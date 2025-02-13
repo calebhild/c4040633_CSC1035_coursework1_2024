@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Manufacturer {
     private String name;
-    private ArrayList<CarModel> carModels; // Stores car models made by this manufacturer
+    private ArrayList<CarModel> carModels;
 
     // Constructor
     public Manufacturer(String name) {
@@ -28,19 +28,30 @@ public class Manufacturer {
     public void addCarModel(CarModel carModel) {
         carModels.add(carModel);
     }
-}
 
-public CarModel
-getMostExpensiveCarModel (){
-    if (carModels.size() == 0){
-        return null // Return null if no car model excists 
-    }
-    CarModel mostExpensive = carModels.get(0);
-    for (int i =1; i < carModels.size(); i++)
-    {
-        if (carModels.get(i).getSalesPrice() > mostExpensive.getSalesPrice()){
-            mostExpensive = carModels.get(i);
+    // Method to find the most expensive car model
+    public CarModel getMostExpensiveCarModel() {
+        if (carModels.size() == 0) {
+            return null; // Return null if no car models exist
         }
+
+        CarModel mostExpensive = carModels.get(0);
+        for (int i = 1; i < carModels.size(); i++) {
+            if (carModels.get(i).getSalesPrice() > mostExpensive.getSalesPrice()) {
+                mostExpensive = carModels.get(i);
+            }
+        }
+        return mostExpensive;
     }
-    return mostExpensive;
+
+    // Method to calculate total revenue for a specific car type
+    public double getTotalRevenueByType(String type) {
+        double total = 0;
+        for (int i = 0; i < carModels.size(); i++) {
+            if (carModels.get(i).getType().equalsIgnoreCase(type)) { 
+                total += carModels.get(i).getSalesPrice() * carModels.get(i).getNumberSold();
+            }
+        }
+        return total; 
+    }
 }
