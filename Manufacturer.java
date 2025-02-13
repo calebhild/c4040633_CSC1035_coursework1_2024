@@ -55,3 +55,13 @@ public class Manufacturer {
         return total; 
     }
 }
+public ArrayList<CarModel> getCarModelAbovePrice(double price){
+    ArrayList<CarModel> result = new ArrayList<CarModel>();
+    for (int i = 0; i < carModels.size(); i++){
+        CarModel car = carModels.get(i);
+        if (car.getSalesPrice() > price){
+            result.add(car);
+        }
+    }
+    return result'
+}
