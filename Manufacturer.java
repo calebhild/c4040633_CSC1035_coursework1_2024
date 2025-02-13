@@ -29,3 +29,18 @@ public class Manufacturer {
         carModels.add(carModel);
     }
 }
+
+public CarModel
+getMostExpensiveCarModel (){
+    if (carModels.size() == 0){
+        return null // Return null if no car model excists 
+    }
+    CarModel mostExpensive = carModels.get(0);
+    for (int i =1; i < carModels.size(); i++)
+    {
+        if (carModels.get(i).getSalesPrice() > mostExpensive.getSalesPrice()){
+            mostExpensive = carModels.get(i);
+        }
+    }
+    return mostExpensive;
+}
