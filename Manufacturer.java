@@ -29,16 +29,16 @@ public class Manufacturer {
         carModels.add(carModel);
     }
 
-    // Method to find the most expensive car model
-    public CarModel getMostExpensiveCarModel() {
-        if (carModels.size() == 0) {
+     // Method to find the most expensive car model
+     public CarModel getMostExpensiveCarModel() {
+        if (carModels.isEmpty()) {
             return null; // Return null if no car models exist
         }
 
         CarModel mostExpensive = carModels.get(0);
-        for (int i = 1; i < carModels.size(); i++) {
-            if (carModels.get(i).getSalesPrice() > mostExpensive.getSalesPrice()) {
-                mostExpensive = carModels.get(i);
+        for (CarModel car : carModels) {
+            if (car.getSalesPrice() > mostExpensive.getSalesPrice()) {
+                mostExpensive = car;
             }
         }
         return mostExpensive;
@@ -47,21 +47,22 @@ public class Manufacturer {
     // Method to calculate total revenue for a specific car type
     public double getTotalRevenueByType(String type) {
         double total = 0;
-        for (int i = 0; i < carModels.size(); i++) {
-            if (carModels.get(i).getType().equalsIgnoreCase(type)) { 
-                total += carModels.get(i).getSalesPrice() * carModels.get(i).getNumberSold();
+        for (CarModel car : carModels) {
+            if (car.getType().equalsIgnoreCase(type)) {
+                total += car.getSalesPrice() * car.getNumberSold();
             }
         }
-        return total; 
+        return total;
     }
-}
-public ArrayList<CarModel> getCarModelAbovePrice(double price){
-    ArrayList<CarModel> result = new ArrayList<CarModel>();
-    for (int i = 0; i < carModels.size(); i++){
-        CarModel car = carModels.get(i);
-        if (car.getSalesPrice() > price){
-            result.add(car);
+
+    // Method to get all car models above a certain price
+    public ArrayList<CarModel> getCarModelsAbovePrice(double price) {
+        ArrayList<CarModel> result = new ArrayList<>();
+        for (CarModel car : carModels) {
+            if (car.getSalesPrice() > price) {
+                result.add(car);
+            }
         }
+        return result;
     }
-    return result'
 }
