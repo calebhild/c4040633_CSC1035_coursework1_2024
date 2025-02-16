@@ -7,7 +7,7 @@ public class Manufacturer {
     // Constructor
     public Manufacturer(String name) {
         this.name = name;
-        carModels = new ArrayList<CarModel>(); // Initialize the list
+        carModels = new ArrayList<CarModel>(); // Initialise the list
     }
 
     // Getters
