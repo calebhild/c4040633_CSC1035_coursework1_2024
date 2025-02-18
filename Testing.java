@@ -1,9 +1,5 @@
-import java.util.Scanner;
-
 public class Testing {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
         // Create Manufacturers
         Manufacturer volkswagen = new Manufacturer("Volkswagen");
         Manufacturer vauxhall = new Manufacturer("Vauxhall");
@@ -27,54 +23,10 @@ public class Testing {
         Reporting report = new Reporting();
         report.addManufacturer(volkswagen);
         report.addManufacturer(vauxhall);
-        report.addManufacturer(mazda); // Add Mazda to the report for comparison
+        report.addManufacturer(mazda);
 
-        // Menu loop
-        while (true) {
-            System.out.println("\nCar Sales Management Menu System");
-            System.out.println("1. Display the priciest car sold");
-            System.out.println("2. Display the manufacturer with the highest earnings");
-            System.out.println("3. Display cars priced above a specific amount");
-            System.out.println("4. Exit");
-            System.out.print("Please enter your selection: ");
-
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline
-
-            if (choice == 1) {
-                CarModel expensiveCar = report.getMostExpensiveCarModelSold();
-                if (expensiveCar != null) {
-                    System.out.println("Most Expensive Car: " + expensiveCar.getName() + " (£" + expensiveCar.getSalesPrice() + ")");
-                } else {
-                    System.out.println("No cars available.");
-                }
-
-            } else if (choice == 2) {
-                System.out.print("Enter car type (Hatchback, Saloon, Estate): ");
-                String carType = scanner.nextLine();
-                Manufacturer topManufacturer = report.getManufacturerWithHighestRevenue(carType);
-                if (topManufacturer != null) {
-                    System.out.println("Top Manufacturer for " + carType + ": " + topManufacturer.getName());
-                } else {
-                    System.out.println("No manufacturer found.");
-                }
-
-            } else if (choice == 3) {
-                System.out.print("Enter minimum price (£): ");
-                double priceLimit = scanner.nextDouble();
-                System.out.println("Cars costing more than £" + priceLimit + ":");
-                for (CarModel car : report.getCarModelsAbovePrice(priceLimit)) {
-                    System.out.println(car.getName() + " (£" + car.getSalesPrice() + ")");
-                }
-
-            } else if (choice == 4) {
-                System.out.println("quitting...");
-                scanner.close();
-                break;
-
-            } else {
-                System.out.println("ERROR: Invalid Choice!");
-            }
-        }
+        // Start ReportingIO 
+        ReportingIO reportingIO = new ReportingIO(report);
+        reportingIO.displayMenu();
     }
 }

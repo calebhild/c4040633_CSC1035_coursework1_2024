@@ -3,9 +3,9 @@ public class CarModel {
     private double weight;
     private double salesPrice;
     private int numberSold;
-    private String type;                         // Hatchback, saloon, or estate
+    private String type; // Hatchback/saloon/esate
 
-                                                 // Constructor
+// Constructor
     public CarModel(String name, double weight, double salesPrice, int numberSold, String type) {
         this.name = name;
         this.weight = weight;
@@ -14,7 +14,7 @@ public class CarModel {
         this.type = type;
     }
 
-                                                 // Getters
+// Getters
     public String getName() {
         return name;
     }
