@@ -32,7 +32,7 @@ public class Manufacturer {
      // Method to find the most expensive car model
      public CarModel getMostExpensiveCarModel() {
         if (carModels.isEmpty()) {
-            return null; // Return null if no car models exist
+            return null; // Return nothing if no car models exist
         }
 
         CarModel mostExpensive = carModels.get(0);
@@ -55,7 +55,7 @@ public class Manufacturer {
         return total;
     }
 
-    // Method to get all car models above a certain price
+    // Method to get all car models costing more than a certain price
     public ArrayList<CarModel> getCarModelsAbovePrice(double price) {
         ArrayList<CarModel> result = new ArrayList<>();
         for (CarModel car : carModels) {

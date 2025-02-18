@@ -10,13 +10,13 @@ public class Reporting {
     public void addManufacturer(Manufacturer manufacturer) {                                                        // Add a manufacturer to the list
         manufacturers.add(manufacturer);
     }
-
+  
     public ArrayList<Manufacturer> getManufacturers() {                                                            // Get the list of manufacturers
         return manufacturers;
     }
 
     public CarModel getMostExpensiveCarModelSold() {                                                               // Find the most expensive car model sold
-        if (manufacturers.size() == 0) {                                                                           // If no manufacturers exist, return null
+        if (manufacturers.size() == 0) {                                                                           // If no manufacturers exist, return nothing
             return null;
         }
 
@@ -34,8 +34,8 @@ public class Reporting {
         return mostExpensive;
     }
 
-public Manufacturer getManufacturerWithHighestRevenue(String type) {                                         // Find the manufacturer with the most revenue for a given car type
-    if (manufacturers.size() == 0) {                                                                         // If no manufacturers exist, return null
+public Manufacturer getManufacturerWithHighestRevenue(String type) {                                         // Find the manufacturer with the highest revenue for a given car type
+    if (manufacturers.size() == 0) {                                                                         // If no manufacturers exist, return nothing
         return null;
     }
 
@@ -53,7 +53,7 @@ public Manufacturer getManufacturerWithHighestRevenue(String type) {            
     return highestManufacturer;
 }
 
-public ArrayList<CarModel> getCarModelsAbovePrice(double price) {                                            // Get all car models that are above a certain price
+public ArrayList<CarModel> getCarModelsAbovePrice(double price) {                                            // Get all car models that cost more than a certain price
     ArrayList<CarModel> expensiveCars = new ArrayList<>();
 
     for (int i = 0; i < manufacturers.size(); i++) {
