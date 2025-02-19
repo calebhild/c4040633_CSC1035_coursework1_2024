@@ -1,4 +1,14 @@
+/**
+ * The Testing class allows entries for the system
+ * It creates manufacturers, car models, and initialises the reporting system.
+ */
 public class Testing {
+    /**
+     * The main method the program can be executed 
+     * Begins by setting up Car Models, Manufacterers and starts the reporting system 
+     * 
+     * @param args Command line arguments 
+     */
     public static void main(String[] args) {
         // Create Manufacturers
         Manufacturer volkswagen = new Manufacturer("Volkswagen");
@@ -19,13 +29,13 @@ public class Testing {
         vauxhall.addCarModel(corsa);
         mazda.addCarModel(mx5);
 
-        // Create Reporting
+        // Create Reporting system and add manufacturers
         Reporting report = new Reporting();
         report.addManufacturer(volkswagen);
         report.addManufacturer(vauxhall);
         report.addManufacturer(mazda);
 
-        // Start ReportingIO 
+        // Initialise and run the user interface
         ReportingIO reportingIO = new ReportingIO(report);
         reportingIO.displayMenu();
     }

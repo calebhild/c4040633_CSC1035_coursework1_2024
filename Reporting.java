@@ -1,22 +1,40 @@
 import java.util.ArrayList;
 
+/**
+ * Manages the reporting system for car manufacturers and their data
+ */
 public class Reporting {
-    private ArrayList<Manufacturer> manufacturers;                                                                  // List of manufacturers
+    private ArrayList<Manufacturer> manufacturers;
 
-    public Reporting() {                                                                                            // Constructor
-        manufacturers = new ArrayList<>();                                                                          // Create an empty list
+    /**
+     * Initializes the Reporting system with an empty list of manufacturers
+     */
+    public Reporting() {
+        manufacturers = new ArrayList<>();
     }
 
-    public void addManufacturer(Manufacturer manufacturer) {                                                        // Add a manufacturer to the list
+    /**
+     * Adds a manufacturer to the list
+     * @param manufacturer The name of the manufacturer to be added
+     */
+    public void addManufacturer(Manufacturer manufacturer) {
         manufacturers.add(manufacturer);
     }
   
-    public ArrayList<Manufacturer> getManufacturers() {                                                            // Get the list of manufacturers
+    /**
+     * Retrieves the list of manufacturers
+     * @return A list of all stored Manufacturers 
+     */
+    public ArrayList<Manufacturer> getManufacturers() {
         return manufacturers;
     }
 
-    public CarModel getMostExpensiveCarModelSold() {                                                               // Find the most expensive car model sold
-        if (manufacturers.size() == 0) {                                                                           // If no manufacturers exist, return nothing
+    /**
+     * Finds the most expensive Car Model sold and returns it to the user
+     * @return Returns the most expensive Car Model sold, or returns null if none is found
+     */
+    public CarModel getMostExpensiveCarModelSold() {
+        if (manufacturers.size() == 0) {
             return null;
         }
 
@@ -25,44 +43,54 @@ public class Reporting {
         for (int i = 0; i < manufacturers.size(); i++) {
             CarModel expensiveCar = manufacturers.get(i).getMostExpensiveCarModel();
 
-            if (expensiveCar != null) {                                                                           // Check if car exists
+            if (expensiveCar != null) {
                 if (mostExpensive == null || expensiveCar.getSalesPrice() > mostExpensive.getSalesPrice()) {
-                    mostExpensive = expensiveCar;                                                                 // Update most expensive car
+                    mostExpensive = expensiveCar;
                 }
             }
         }
         return mostExpensive;
     }
 
-public Manufacturer getManufacturerWithHighestRevenue(String type) {                                         // Find the manufacturer with the highest revenue for a given car type
-    if (manufacturers.size() == 0) {                                                                         // If no manufacturers exist, return nothing
-        return null;
-    }
-
-    Manufacturer highestManufacturer = null;
-    double highestRevenue = 0;
-
-    for (int i = 0; i < manufacturers.size(); i++) {
-        double revenue = manufacturers.get(i).getTotalRevenueByType(type);
-
-        if (revenue > highestRevenue) {                                                                      // Check if revenue is higher
-            highestRevenue = revenue;
-            highestManufacturer = manufacturers.get(i);
+    /**
+     * Works out the manufacturer with the highest revenue for a specific car type
+     * @param type The type of car to check revenue for
+     * @return Returns the manufacturer with the highest revenue, or returns null if no Manufacturer exists 
+     */
+    public Manufacturer getManufacturerWithHighestRevenue(String type) {
+        if (manufacturers.size() == 0) {
+            return null;
         }
-    }
-    return highestManufacturer;
-}
 
-public ArrayList<CarModel> getCarModelsAbovePrice(double price) {                                            // Get all car models that cost more than a certain price
-    ArrayList<CarModel> expensiveCars = new ArrayList<>();
+        Manufacturer highestManufacturer = null;
+        double highestRevenue = 0;
 
-    for (int i = 0; i < manufacturers.size(); i++) {
-        ArrayList<CarModel> carsFromManufacturer = manufacturers.get(i).getCarModelsAbovePrice(price);
+        for (int i = 0; i < manufacturers.size(); i++) {
+            double revenue = manufacturers.get(i).getTotalRevenueByType(type);
 
-        for (int j = 0; j < carsFromManufacturer.size(); j++) {                                             // Add all expensive cars from this manufacturer to the list
-            expensiveCars.add(carsFromManufacturer.get(j));
+            if (revenue > highestRevenue) {
+                highestRevenue = revenue;
+                highestManufacturer = manufacturers.get(i);
+            }
         }
+        return highestManufacturer;
     }
-    return expensiveCars;
-}
+
+    /**
+     * Retrieves a list of car models that have a selling price above a certain value
+     * @param price The min price to search for 
+     * @return A list of car models above the given price 
+     */
+    public ArrayList<CarModel> getCarModelsAbovePrice(double price) {
+        ArrayList<CarModel> expensiveCars = new ArrayList<>();
+
+        for (int i = 0; i < manufacturers.size(); i++) {
+            ArrayList<CarModel> carsFromManufacturer = manufacturers.get(i).getCarModelsAbovePrice(price);
+
+            for (int j = 0; j < carsFromManufacturer.size(); j++) {
+                expensiveCars.add(carsFromManufacturer.get(j));
+            }
+        }
+        return expensiveCars;
+    }
 }

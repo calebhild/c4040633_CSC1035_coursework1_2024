@@ -1,15 +1,24 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Allows User interactions with the system 
+ */
 public class ReportingIO {
     private Reporting report;
     private Scanner scanner;
 
+    /**
+     * Constructs a ReportingIO instance 
+     * @param report The reporting system instance
+     */
     public ReportingIO(Reporting report) {
         this.report = report;
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * Displays the main Menu with 6 options to the user 
+     */
     public void displayMenu() {
         while (true) {
             System.out.println("\nCar Sales System - Main Menu");
@@ -50,6 +59,9 @@ public class ReportingIO {
         }
     }
 
+    /**
+     * Allows the user to enter a manufacturer and add it to the system 
+     */
     private void addManufacturer() {
         System.out.print("Please enter the manufacturer's name: ");
         String name = scanner.nextLine();
@@ -57,6 +69,9 @@ public class ReportingIO {
         System.out.println("--Manufacturer successfully added--");
     }
 
+    /**
+     * Allows the user to add a car model to associate to the manufacturer provided 
+     */
     private void addCarModel() {
         System.out.print("Enter the name of the manufacturer: ");
         String manufacturerName = scanner.nextLine();
@@ -82,6 +97,11 @@ public class ReportingIO {
         System.out.println("--Car model has been successfully added--");
     }
 
+    /**
+     * Finds a manufacturer by name
+     * @param name Name of the manufacturer
+     * @return Returns the Manufacturer found, if no Manufacturer found returns null
+     */
     private Manufacturer findManufacturer(String name) {
         for (Manufacturer m : report.getManufacturers()) {
             if (m.getName().equalsIgnoreCase(name)) {
@@ -91,6 +111,9 @@ public class ReportingIO {
         return null;
     }
 
+    /**
+     * Displays a list of all manufacturers
+     */
     private void showManufacturers() {
         System.out.println("\nList of Manufacturers:");
         for (Manufacturer m : report.getManufacturers()) {
@@ -98,12 +121,15 @@ public class ReportingIO {
         }
     }
 
+    /**
+     * Displays car models from the specified Manufacturer
+     */
     private void showCarModelsByManufacturer() {
         System.out.print("Enter the name of the manufacturer: ");
         String manufacturerName = scanner.nextLine();
         Manufacturer manufacturer = findManufacturer(manufacturerName);
         if (manufacturer == null) {
-            System.out.println("--NO MATHCING MANUFACTURERERS FOUND--.");
+            System.out.println("--NO MATCHING MANUFACTURERS FOUND--.");
             return;
         }
         
@@ -113,6 +139,9 @@ public class ReportingIO {
         }
     }
 
+    /**
+     * Displays the sales/ Statistics menu
+     */
     private void viewReports() {
         System.out.println("\nSales and Revenue Reports");
         System.out.println("1. Most expensive car model sold");
@@ -137,6 +166,9 @@ public class ReportingIO {
         }
     }
 
+    /**
+     * Displays the most expensive car model sold
+     */
     private void showMostExpensiveCar() {
         CarModel expensiveCar = report.getMostExpensiveCarModelSold();
         if (expensiveCar != null) {
@@ -146,6 +178,9 @@ public class ReportingIO {
         }
     }
 
+    /**
+     * Displays the manufacturer with the highest revenue for the specified Car Type
+     */
     private void showTopManufacturerByRevenue() {
         System.out.print("Enter a car type (Hatchback, Saloon, Estate): ");
         String carType = scanner.nextLine();
@@ -157,6 +192,9 @@ public class ReportingIO {
         }
     }
 
+    /**
+     * Displays cars that were sold for more than a certain price
+     */
     private void showCarsAbovePrice() {
         System.out.print("Enter the minimum price (£): ");
         double priceLimit = scanner.nextDouble();
