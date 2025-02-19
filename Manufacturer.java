@@ -29,7 +29,10 @@ public class Manufacturer {
         carModels.add(carModel);
     }
 
-     // Method to find the most expensive car model
+     /**
+      * getMostExpensiveCarModel Method
+      * @return Returns nothing if list is empty, and returns the most exoensive Car Model
+      */
      public CarModel getMostExpensiveCarModel() {
         if (carModels.isEmpty()) {
             return null; // Return nothing if no car models exist
